@@ -1,6 +1,6 @@
-# Frontend - Agentic AI Demo
+# Frontend (React + TypeScript)
 
-A modern React + TypeScript frontend for the AI chat demo application with file upload and preview capabilities.
+Modern React frontend for the AI chat application with real-time streaming, file upload, and markdown rendering.
 
 ## Tech Stack
 
@@ -39,20 +39,35 @@ frontend/
 └── package.json
 ```
 
+## Quick Start
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Setup environment
+cp .env.example .env
+# Edit .env if needed (default: http://localhost:3000)
+
+# 3. Start development server
+npm run dev
+# Runs on http://localhost:5178
+```
+
 ## Prerequisites
 
-- Node.js 20.19.5 (managed via Volta)
-- npm or yarn
+- **Node.js**: 20.19.5 (managed via Volta)
+- **npm**: 10.x or yarn
+- **Backend**: NestJS backend running on port 3000
 
 ## Environment Variables
 
-Create a `.env` file in the frontend directory:
+Create `.env` file:
 
 ```env
-VITE_API_URL=http://localhost:3000
+VITE_API_URL=http://localhost:3001  # Backend API URL
+PORT=5178                            # Frontend server port (production)
 ```
-
-For production, set this to your backend API URL.
 
 ## Installation
 
@@ -62,15 +77,14 @@ npm install
 
 ## Development
 
-Start the development server with hot module replacement:
-
 ```bash
 npm run dev
 ```
 
-This will start Vite dev server on `http://localhost:5178` with:
-- Hot module replacement (HMR)
-- API proxy to backend at `/api` → `http://localhost:3000`
+Development server starts on `http://localhost:5178` with:
+- Hot Module Replacement (HMR)
+- API proxy: `/api/*` → `http://localhost:3001`
+- Fast refresh for React components
 
 ## Building for Production
 

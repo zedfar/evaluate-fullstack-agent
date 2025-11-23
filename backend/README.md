@@ -1,8 +1,6 @@
-# Agentic AI Demo Backend
+# Backend (NestJS API)
 
-> Simple demo backend for AI chat application - Public sample mode (No authentication)
-
-Backend NestJS untuk aplikasi AI chat dengan mode demo publik. Backend ini dirancang untuk demonstrasi dan tidak memerlukan sistem autentikasi pengguna.
+NestJS backend for AI chat application with demo mode, file management, conversation handling, and AI streaming integration.
 
 ## Features
 
@@ -27,100 +25,92 @@ Backend NestJS untuk aplikasi AI chat dengan mode demo publik. Backend ini diran
 - **Validation**: class-validator & class-transformer
 - **API Docs**: Swagger/OpenAPI
 
-## Prerequisites
-
-- **Node.js**: 20.19.5 (managed by Volta)
-- **npm**: 10.x
-- **PostgreSQL**: 14+ (Neon serverless database)
-- **Redis**: 6+ (Redis Cloud)
-- **AI Engine**: Python backend for AI processing
-
-## Installation
+## Quick Start
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 npm install
 
-# Build the application
-npm run build
+# 2. Setup environment
+cp .env.example .env
+# Edit .env with your database and service credentials
+
+# 3. Start development server
+npm run start:dev
+# Runs on http://localhost:3000
+# API docs: http://localhost:3000/api
 ```
+
+## Prerequisites
+
+- **Node.js**: 20.19.5 (via Volta)
+- **npm**: 10.x
+- **PostgreSQL**: 14+ (local or Neon)
+- **Redis**: 6+ (local or Redis Cloud)
+- **AI Engine**: FastAPI agent running on port 8000
+- **Vercel Blob**: For file storage (or alternative)
 
 ## Environment Configuration
 
-Create a `.env` file in the backend directory:
+Create `.env` file (see `.env.example` for all options):
 
-```bash
-# Database (PostgreSQL - Neon)
-DATABASE_HOST=your-neon-host.aws.neon.tech
+```env
+# Database
+DATABASE_HOST=localhost
 DATABASE_PORT=5432
-DATABASE_USER=neondb_owner
-DATABASE_PASSWORD=your-database-password
+DATABASE_USER=postgres
+DATABASE_PASSWORD=your_password
 DATABASE_NAME=agentic_db
 
-# Redis Cache
-REDIS_HOST=your-redis-host.cloud.redislabs.com
-REDIS_PORT=13113
-REDIS_PASSWORD=your-redis-password
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=
 REDIS_DB=0
-REDIS_TTL=300
-
-# Cache TTL Configuration (in seconds)
-CACHE_TTL_CONVERSATION=600             # 10 minutes
-CACHE_TTL_CONVERSATION_LIST=300        # 5 minutes
-CACHE_TTL_MESSAGES=600                 # 10 minutes
-CACHE_TTL_FILES=3600                   # 1 hour
-
-# Rate Limiting
-RATE_LIMIT_WINDOW=60                   # Default window in seconds
-RATE_LIMIT_CHAT_MESSAGE=60             # Messages per window
-RATE_LIMIT_CHAT_MESSAGE_WINDOW=60      # 1 minute
-RATE_LIMIT_CHAT_CREATE=20              # Conversation creates
-RATE_LIMIT_CHAT_CREATE_WINDOW=60       # 1 minute
-RATE_LIMIT_FILE_UPLOAD=10              # File uploads
-RATE_LIMIT_FILE_UPLOAD_WINDOW=60       # 1 minute
-RATE_LIMIT_API_GENERAL=100             # General API calls
-RATE_LIMIT_API_GENERAL_WINDOW=60       # 1 minute
-RATE_LIMIT_UNAUTH=50                   # Unauthenticated calls
-RATE_LIMIT_UNAUTH_WINDOW=60            # 1 minute
-
-# Stream Configuration
-STREAM_TIMEOUT=300                     # 5 minutes
 
 # Server
 PORT=3001
 NODE_ENV=development
 
-# AI Engine (Python Backend)
+# AI Engine
 AI_ENGINE_URL=http://localhost:8000
 
-# CORS Origins (comma-separated)
-ALLOWED_ORIGINS=http://localhost:5177,http://localhost:3000
+# CORS
+ALLOWED_ORIGINS=http://localhost:5178
 
 # Vercel Blob Storage
-BLOB_READ_WRITE_TOKEN=vercel_blob_rw_YOUR_TOKEN_HERE
+BLOB_READ_WRITE_TOKEN=your_token_here
 
-# Demo User (create this user first in database)
-DEMO_USER_ID=uuid-of-demo-user
+# Demo Mode (optional)
+DEMO_USER_ID=
+```
+
+## Installation
+
+```bash
+npm install
 ```
 
 ## Running the Application
 
-### Development Mode
+### Development
 
 ```bash
-# Start with hot-reload
 npm run start:dev
 ```
 
-The server will start on `http://localhost:3001`
+Server starts on `http://localhost:3000`
+- API Documentation: `http://localhost:3000/api`
+- Hot reload enabled
+- TypeORM auto-sync (development only)
 
-### Production Mode
+### Production
 
 ```bash
-# Build first
+# Build
 npm run build
 
-# Start production server
+# Start
 npm run start:prod
 ```
 

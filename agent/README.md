@@ -1,12 +1,12 @@
-# Agentic AI Engine
+# AI Agent (FastAPI Engine)
 
 LangGraph-powered AI Engine with RAG (Retrieval-Augmented Generation) capabilities, supporting multiple LLM providers and advanced document processing.
 
 ## Overview
 
-This AI Engine provides a production-ready backend service for conversational AI with advanced document understanding capabilities. It supports multiple language models (local and cloud-based), vector-based document retrieval with RAG, and agentic workflows powered by LangGraph. The engine is designed for high performance, scalability, and flexibility in model selection.
+Production-ready AI backend service built with FastAPI and LangGraph. Provides intelligent chat capabilities with document understanding through RAG, supports multiple LLM providers (Claude, GPT, Local models), and features agentic workflows with tool use.
 
-The AI Engine seamlessly integrates with the NestJS backend to provide intelligent chat capabilities, document processing, and context-aware responses through RAG (Retrieval-Augmented Generation).
+Seamlessly integrates with the NestJS backend to deliver context-aware AI responses, streaming chat, and document processing.
 
 ### Key Features
 
@@ -108,48 +108,69 @@ The AI Engine seamlessly integrates with the NestJS backend to provide intellige
     └──────────┘      └──────────┘      └──────────┘
 ```
 
+## Quick Start
+
+```bash
+# 1. Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Setup environment
+cp .env.example .env
+# Edit .env with your API keys
+
+# 4. Start server
+python main.py
+# Server runs on http://localhost:8000
+# Docs at http://localhost:8000/docs
+```
+
 ## Prerequisites
 
-- Python 3.10+
-- Qdrant Cloud account (or local Qdrant instance)
-- Redis Cloud account (or local Redis instance) - **Recommended for production**
-- BGE-M3 embedding server (or OpenAI API key)
-- Optional: Anthropic API key, Local LLM server
+- **Python**: 3.10+
+- **Qdrant**: Cloud account or local instance
+- **Redis**: Cloud or local (recommended for production)
+- **Embedding Server**: BGE-M3 or OpenAI API
+- **LLM**: Anthropic API key, OpenAI API key, or Local LLM server
+- **Tesseract**: For OCR (image processing)
 
 ## Installation
 
-1. **Clone the repository**
-   ```bash
-   cd ai-engine
-   ```
+### 1. Install Python Dependencies
 
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+```bash
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Install packages
+pip install -r requirements.txt
+```
 
-4. **Install Tesseract (for OCR)**
-   ```bash
-   # Ubuntu/Debian
-   sudo apt-get install tesseract-ocr
+### 2. Install Tesseract OCR (Optional - for image processing)
 
-   # macOS
-   brew install tesseract
+```bash
+# Ubuntu/Debian
+sudo apt-get install tesseract-ocr
 
-   # Windows: Download from https://github.com/UB-Mannheim/tesseract/wiki
-   ```
+# macOS
+brew install tesseract
 
-5. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your settings
-   ```
+# Windows
+# Download from https://github.com/UB-Mannheim/tesseract/wiki
+```
+
+### 3. Configure Environment
+
+```bash
+cp .env.example .env
+# Edit .env with your API keys and settings
+```
+
+See [Configuration](#configuration) section below for detailed environment setup.
 
 ## Configuration
 
@@ -160,7 +181,7 @@ Create a `.env` file with the following configuration:
 ```env
 # Server
 HOST=0.0.0.0
-PORT=8000
+PORT=8001
 ENABLE_REQUEST_LOGGING=true  # Enable/disable request logging middleware
 
 # Model Provider Selection ('local' or 'claude')
@@ -237,12 +258,12 @@ The system supports multiple embedding providers:
 python main.py
 ```
 
-The server will start at `http://localhost:8000` with auto-reload enabled.
+The server will start at `http://localhost:8001` with auto-reload enabled.
 
 ### Production Mode
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4
+uvicorn main:app --host 0.0.0.0 --port 8001 --workers 4
 ```
 
 ### Using Docker
@@ -252,7 +273,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4
 docker build -t ai-engine .
 
 # Run the container
-docker run -p 8000:8000 --env-file .env ai-engine
+docker run -p 8001:8001 --env-file .env ai-engine
 ```
 
 ### Using Docker Compose (Recommended)
@@ -281,8 +302,8 @@ http://localhost:8000/api/v1
 ### Interactive API Docs
 
 Once the server is running, visit:
-- Swagger UI: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
+- Swagger UI: `http://localhost:8001/docs`
+- ReDoc: `http://localhost:8001/redoc`
 
 ### Endpoints
 
@@ -422,7 +443,7 @@ GET /api/v1/collection-stats/{conversation_id}
 import httpx
 
 response = httpx.post(
-    "http://localhost:8000/api/v1/chat",
+    "http://localhost:8001/api/v1/chat",
     json={
         "messages": [
             {"role": "user", "content": "Explain quantum computing"}
@@ -451,7 +472,7 @@ with open("document.pdf", "rb") as f:
         "file_id": "doc-001"
     }
     upload_response = httpx.post(
-        "http://localhost:8000/api/v1/upload",
+        "http://localhost:8001/api/v1/upload",
         files=files,
         data=data
     )
@@ -459,7 +480,7 @@ with open("document.pdf", "rb") as f:
 
 # Step 2: Chat with RAG enabled
 chat_response = httpx.post(
-    "http://localhost:8000/api/v1/chat",
+    "http://localhost:8001/api/v1/chat",
     json={
         "messages": [
             {"role": "user", "content": "Summarize the uploaded document"}
@@ -481,7 +502,7 @@ for line in chat_response.iter_lines():
 import httpx
 
 response = httpx.post(
-    "http://localhost:8000/api/v1/chat/tools",
+    "http://localhost:8001/api/v1/chat/tools",
     json={
         "messages": [
             {

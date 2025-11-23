@@ -2,6 +2,13 @@
 
 A complete full-stack AI chat application with RAG (Retrieval-Augmented Generation) capabilities, featuring a React frontend, NestJS backend, and FastAPI AI engine powered by LangGraph.
 
+## Quick Links
+
+- **[Local Setup Guide](./HOWTORUNLOCAL.md)** - Complete guide for running locally
+- **[Agent Documentation](./agent/README.md)** - AI Engine details
+- **[Backend Documentation](./backend/README.md)** - API Backend details
+- **[Frontend Documentation](./frontend/README.md)** - UI Frontend details
+
 ## Architecture Overview
 
 This project consists of three main components:
@@ -15,13 +22,13 @@ This project consists of three main components:
          ↓
 ┌─────────────────┐
 │    Backend      │  NestJS + TypeORM + PostgreSQL
-│   Port: 3000    │  API Gateway, Auth, File Management
+│   Port: 3001    │  API Gateway, Auth, File Management
 └────────┬────────┘
          │ HTTP/REST
          ↓
 ┌─────────────────┐
 │   AI Agent      │  FastAPI + LangGraph + RAG
-│   Port: 8000    │  AI Engine, Vector Search, Document Processing
+│   Port: 8001    │  AI Engine, Vector Search, Document Processing
 └─────────────────┘
 
 Supporting Services:
@@ -67,120 +74,28 @@ Supporting Services:
 
 ## Quick Start
 
-### 1. Clone the Repository
+For detailed local setup instructions, see **[HOWTORUNLOCAL.md](./HOWTORUNLOCAL.md)**.
+
+### TL;DR
 
 ```bash
-git clone <repository-url>
-cd evaluate-fullstack-agent
-```
-
-### 2. Setup Environment Variables
-
-Copy the example environment files and configure them:
-
-```bash
-# Agent (AI Engine)
+# 1. Setup environment files
 cp agent/.env.example agent/.env
-# Edit agent/.env with your API keys and configuration
-
-# Backend
 cp backend/.env.example backend/.env
-# Edit backend/.env with database and Redis credentials
-
-# Frontend
 cp frontend/.env.example frontend/.env
-# Edit frontend/.env with backend URL
+
+# 2. Install dependencies
+cd backend && npm install && cd ..
+cd frontend && npm install && cd ..
+cd agent && pip install -r requirements.txt && cd ..
+
+# 3. Start services (3 terminals)
+cd agent && python main.py          # Terminal 1: http://localhost:8000
+cd backend && npm run start:dev     # Terminal 2: http://localhost:3000
+cd frontend && npm run dev          # Terminal 3: http://localhost:5178
 ```
 
-### 3. Setup PostgreSQL Database
-
-```bash
-# Create database
-createdb agentic_db
-
-# Or using psql
-psql -U postgres
-CREATE DATABASE agentic_db;
-```
-
-### 4. Setup Redis
-
-```bash
-# Install and start Redis
-# macOS
-brew install redis
-brew services start redis
-
-# Ubuntu/Debian
-sudo apt-get install redis-server
-sudo systemctl start redis
-
-# Or use Docker
-docker run -d -p 6379:6379 redis:latest
-```
-
-### 5. Setup Qdrant (Vector Database)
-
-```bash
-# Using Docker (recommended)
-docker run -p 6333:6333 qdrant/qdrant
-
-# Or download and run locally
-# See https://qdrant.tech/documentation/quick-start/
-```
-
-### 6. Install Dependencies
-
-```bash
-# Backend
-cd backend
-npm install
-cd ..
-
-# Frontend
-cd frontend
-npm install
-cd ..
-
-# Agent
-cd agent
-pip install -r requirements.txt
-cd ..
-```
-
-### 7. Run the Application
-
-Open three terminal windows/tabs:
-
-**Terminal 1 - AI Agent:**
-```bash
-cd agent
-python main.py
-# Runs on http://localhost:8000
-```
-
-**Terminal 2 - Backend:**
-```bash
-cd backend
-npm run start:dev
-# Runs on http://localhost:3000
-```
-
-**Terminal 3 - Frontend:**
-```bash
-cd frontend
-npm run dev
-# Runs on http://localhost:5178
-```
-
-### 8. Access the Application
-
-Open your browser and navigate to:
-- **Frontend**: http://localhost:5178
-- **Backend API**: http://localhost:3000
-- **Backend Swagger Docs**: http://localhost:3000/api
-- **AI Agent**: http://localhost:8000
-- **AI Agent Docs**: http://localhost:8000/docs
+**Note**: You'll need PostgreSQL, Redis, and Qdrant running. See [HOWTORUNLOCAL.md](./HOWTORUNLOCAL.md) for complete setup.
 
 ## Development
 
