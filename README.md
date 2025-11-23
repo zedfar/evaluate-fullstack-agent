@@ -11,7 +11,7 @@ A complete full-stack AI chat application with RAG (Retrieval-Augmented Generati
 > **API Demo:** [Backend API](https://bridge-agent-web-rtskr.up.railway.app/api) | [Agent API](https://agent-web-rtskr.up.railway.app/docs#/)
 >
 
-> **CATATAN:** ADA KEMUNGKINAN PUBLIC API & PUBLIC DEMO TIDAK BERJALAN DENGAN SEMESTINYA KARENA FAKTOR SECURITY, JIKA ADA YANG PERLU DITANYAAKAN SILAHKAN HUBUNGI SAYA
+> **CATATAN:** **ADA KEMUNGKINAN PUBLIC API & PUBLIC DEMO TIDAK BERJALAN DENGAN SEMESTINYA KARENA FAKTOR SECURITY, JIKA ADA YANG PERLU DITANYAAKAN SILAHKAN HUBUNGI SAYA**
 >
 
 ## Quick Links
