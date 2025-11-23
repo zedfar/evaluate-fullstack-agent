@@ -8,7 +8,10 @@ A complete full-stack AI chat application with RAG (Retrieval-Augmented Generati
 > **Live Demo:** [Web Chat Demo](https://agent-web-fe-rtskr.up.railway.app/demo?conversationId=a1658b0d-57be-4156-a55f-4820ce36b231/) | [Web Chat Preview](https://agent-web-fe-rtskr.up.railway.app/preview?conversationId=a1658b0d-57be-4156-a55f-4820ce36b231)
 >
 
-> **API Demo:** [Backend API](https://bridge-agent-web-rtskr.up.railway.app/api) | [Agent API](https://agent-web-rtskr.up.railway.app/docs#/)
+> **Live API Demo:** [Backend API](https://bridge-agent-web-rtskr.up.railway.app/api) | [Agent API](https://agent-web-rtskr.up.railway.app/docs#/)
+>
+
+> **Base Plan:** [History Chat GPT](https://chatgpt.com/share/6922e3df-c1d4-8009-a576-e84dda606a57)
 >
 
 > **CATATAN:** **ADA KEMUNGKINAN PUBLIC API & PUBLIC DEMO TIDAK BERJALAN DENGAN SEMESTINYA KARENA FAKTOR SECURITY, JIKA ADA YANG PERLU DITANYAAKAN SILAHKAN HUBUNGI SAYA**
