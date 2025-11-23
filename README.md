@@ -2,6 +2,12 @@
 
 A complete full-stack AI chat application with RAG (Retrieval-Augmented Generation) capabilities, featuring a React frontend, NestJS backend, and FastAPI AI engine powered by LangGraph.
 
+
+## 🚀 Quick Access
+
+> **Live Demo:** [Web Chat Demo](https://agent-web-fe-rtskr.up.railway.app/demo?conversationId=a1658b0d-57be-4156-a55f-4820ce36b231/) | [Web Chat Preview](https://agent-web-fe-rtskr.up.railway.app/preview?conversationId=a1658b0d-57be-4156-a55f-4820ce36b231)
+>
+
 ## Quick Links
 
 - **[Local Setup Guide](./HOWTORUNLOCAL.md)** - Complete guide for running locally
