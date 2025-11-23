@@ -8,6 +8,12 @@ A complete full-stack AI chat application with RAG (Retrieval-Augmented Generati
 > **Live Demo:** [Web Chat Demo](https://agent-web-fe-rtskr.up.railway.app/demo?conversationId=a1658b0d-57be-4156-a55f-4820ce36b231/) | [Web Chat Preview](https://agent-web-fe-rtskr.up.railway.app/preview?conversationId=a1658b0d-57be-4156-a55f-4820ce36b231)
 >
 
+> **API Demo:** [Backend API](https://bridge-agent-web-rtskr.up.railway.app/api) | [Agent API](https://agent-web-rtskr.up.railway.app/docs#/)
+>
+
+> **CATATAN:** ADA KEMUNGKINAN PUBLIC API & PUBLIC DEMO TIDAK BERJALAN DENGAN SEMESTINYA KARENA FAKTOR SECURITY, JIKA ADA YANG PERLU DITANYAAKAN SILAHKAN HUBUNGI SAYA
+>
+
 ## Quick Links
 
 - **[Local Setup Guide](./HOWTORUNLOCAL.md)** - Complete guide for running locally
